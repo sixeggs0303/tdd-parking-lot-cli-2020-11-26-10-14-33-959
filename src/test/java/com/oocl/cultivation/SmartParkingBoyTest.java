@@ -37,11 +37,11 @@ public class SmartParkingBoyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(0));
         parkingLots.add(new ParkingLot(0));
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
 
         //when
         final NotEnoughPositionException notEnoughPositionException =
-                assertThrows(NotEnoughPositionException.class, () -> parkingBoy.park(new Car()));
+                assertThrows(NotEnoughPositionException.class, () -> smartParkingBoy.park(new Car()));
 
         //then
         assertEquals("Not Enough Position", notEnoughPositionException.getMessage());
@@ -53,13 +53,13 @@ public class SmartParkingBoyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(5));
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        Ticket ticket = parkingBoy.park(new Car());
-        parkingBoy.fetch(ticket);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        Ticket ticket = smartParkingBoy.park(new Car());
+        smartParkingBoy.fetch(ticket);
 
         //when
         final UnrecognizedParkingTicketException unrecognizedParkingTicketException =
-                assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(ticket));
+                assertThrows(UnrecognizedParkingTicketException.class, () -> smartParkingBoy.fetch(ticket));
 
         //then
         assertEquals("Unrecognized Parking Ticket", unrecognizedParkingTicketException.getMessage());
@@ -71,12 +71,12 @@ public class SmartParkingBoyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(5));
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        parkingBoy.park(new Car());
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        smartParkingBoy.park(new Car());
         Ticket fakeTicket = new Ticket();
         //when
         final UnrecognizedParkingTicketException unrecognizedParkingTicketException =
-                assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(fakeTicket));
+                assertThrows(UnrecognizedParkingTicketException.class, () -> smartParkingBoy.fetch(fakeTicket));
 
         //then
         assertEquals("Unrecognized Parking Ticket", unrecognizedParkingTicketException.getMessage());
