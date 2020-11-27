@@ -38,7 +38,7 @@ public class ParkingLotTest {
         //given
         Car car1 = new Car("A");
         Car car2 = new Car("B");
-        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot(2);
 
         //when
         Ticket ticket1 = parkingLot.park(car1);
