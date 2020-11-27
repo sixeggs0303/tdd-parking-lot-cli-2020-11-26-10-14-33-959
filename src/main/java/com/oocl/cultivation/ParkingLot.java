@@ -36,4 +36,8 @@ public class ParkingLot {
     public Integer getEmptyPosition() {
         return this.capacity - this.ticketCarHashMap.size();
     }
+
+    public Double getAvailablePositionRate() {
+        return (this.getEmptyPosition().doubleValue() / this.capacity);
+    }
 }
