@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.NotEnoughPositionException;
+import com.oocl.cultivation.exception.ParkingBoyNotInManagementListException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,7 +23,10 @@ public class ParkingLotServiceManager extends ParkingBoy {
         return managementList;
     }
 
-    public Ticket assignParkingBoyToPark(ParkingBoy parkingBoy, Car car) throws NotEnoughPositionException {
-        return parkingBoy.park(car);
+    public Ticket assignParkingBoyToPark(ParkingBoy parkingBoy, Car car) throws NotEnoughPositionException, ParkingBoyNotInManagementListException {
+        if (managementList.contains(parkingBoy)) {
+            return parkingBoy.park(car);
+        }
+        throw new ParkingBoyNotInManagementListException();
     }
 }
