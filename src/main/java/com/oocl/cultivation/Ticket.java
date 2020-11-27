@@ -1,15 +1,8 @@
 package com.oocl.cultivation;
 
 public class Ticket {
-    private String license;
 
-    public Ticket(Car car){
-        this.license = car.getLicense();
+    public Ticket() {
     }
-
-    public String getLicense() {
-        return this.license;
-    }
-
 
 }

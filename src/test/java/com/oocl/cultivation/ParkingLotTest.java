@@ -8,7 +8,7 @@ public class ParkingLotTest {
     @Test
     public void should_return_a_parking_ticket_when_park_the_car_given_a_car_and_parking_lot() {
         //given
-        Car car = new Car("A");
+        Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
         //when
         final Ticket ticket = parkingLot.park(car);
@@ -20,8 +20,8 @@ public class ParkingLotTest {
     @Test
     public void should_only_return_one_ticket_when_park_multiple_cars_given_multiple_car_and_parking_lot_with_1_capacity() {
         //given
-        Car car1 = new Car("A");
-        Car car2 = new Car("B");
+        Car car1 = new Car();
+        Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
 
         //when
@@ -36,8 +36,8 @@ public class ParkingLotTest {
     @Test
     public void should_return_multiple_ticket_when_park_multiple_cars_given_multiple_car_and_parking_lot_with_enough_capacity() {
         //given
-        Car car1 = new Car("A");
-        Car car2 = new Car("B");
+        Car car1 = new Car();
+        Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot(2);
 
         //when
@@ -45,15 +45,16 @@ public class ParkingLotTest {
         Ticket ticket2 = parkingLot.park(car2);
 
         //then
-        assertEquals(car1.getLicense(), ticket1.getLicense());
-        assertEquals(car2.getLicense(), ticket2.getLicense());
+        assertNotNull(ticket1);
+        assertNotNull(ticket2);
+        assertNotEquals(ticket1, ticket2);
     }
 
     @Test
     public void should_return_the_car_when_fetch_given_a_valid_ticket_and_parking_lot_that_parked_the_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
-        Car car = new Car("A");
+        Car car = new Car();
         Ticket ticket = parkingLot.park(car);
 
         //when
@@ -67,7 +68,7 @@ public class ParkingLotTest {
     public void should_return_null_when_fetch_given_a_used_ticket_and_parking_lot_that_the_car_is_fetched() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
-        Car car = new Car("A");
+        Car car = new Car();
         Ticket ticket = parkingLot.park(car);
         parkingLot.fetch(ticket);
 
