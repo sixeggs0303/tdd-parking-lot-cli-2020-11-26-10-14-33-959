@@ -79,7 +79,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    public void should_return_the_car_when_assign_parking_boy_to_fetch_given_a_service_manager_with_management_list_and_a_ticket() throws NotEnoughPositionException, ParkingBoyNotInManagementListException {
+    public void should_return_the_car_when_assign_parking_boy_to_fetch_given_a_service_manager_with_management_list_and_a_ticket() throws NotEnoughPositionException, UnrecognizedParkingTicketException, ParkingBoyNotInManagementListException {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         ParkingLot parkingLot1 = new ParkingLot(1);
@@ -99,6 +99,4 @@ public class ParkingLotServiceManagerTest {
         //then
         assertEquals(car, actual);
     }
-
-
 }

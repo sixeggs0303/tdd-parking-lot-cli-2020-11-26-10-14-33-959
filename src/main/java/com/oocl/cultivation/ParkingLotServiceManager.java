@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.NotEnoughPositionException;
 import com.oocl.cultivation.exception.ParkingBoyNotInManagementListException;
+import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -29,7 +30,7 @@ public class ParkingLotServiceManager extends ParkingBoy {
         throw new ParkingBoyNotInManagementListException();
     }
 
-    public Car assignParkingBoyToFetch(ParkingBoy parkingBoy, Ticket ticket) {
-        return null;
+    public Car assignParkingBoyToFetch(ParkingBoy parkingBoy, Ticket ticket) throws ParkingBoyNotInManagementListException, UnrecognizedParkingTicketException {
+        return parkingBoy.fetch(ticket);
     }
 }
