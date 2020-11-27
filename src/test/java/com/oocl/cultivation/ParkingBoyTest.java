@@ -69,4 +69,24 @@ class ParkingBoyTest {
         assertNotNull(ticket);
     }
 
+    @Test
+    void should_return_a_car_when_fetch_given_a_car_parked_in_one_of_the_multiple_lots() throws Exception {
+        //given
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        parkingBoy.park(new Car());
+        Ticket ticket = parkingBoy.park(new Car());
+
+        //when
+        parkingBoy.fetch(ticket);
+
+        //then
+        assertNotNull(ticket);
+    }
+
 }
