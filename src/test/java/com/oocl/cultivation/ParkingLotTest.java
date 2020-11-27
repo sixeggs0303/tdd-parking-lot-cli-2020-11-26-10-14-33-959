@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
     @Test
-    public void should_return_a_parking_ticket_when_park_the_car_given_a_car_and_parking_lot() {
+    public void should_return_a_parking_ticket_when_park_the_car_given_a_car_and_parking_lot() throws NotEnoughPositionException {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
@@ -19,7 +19,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_only_return_one_ticket_when_park_multiple_cars_given_multiple_car_and_parking_lot_with_1_capacity() {
+    public void should_only_return_one_ticket_when_park_multiple_cars_given_multiple_car_and_parking_lot_with_1_capacity() throws NotEnoughPositionException {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -35,7 +35,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_multiple_ticket_when_park_multiple_cars_given_multiple_car_and_parking_lot_with_enough_capacity() {
+    public void should_return_multiple_ticket_when_park_multiple_cars_given_multiple_car_and_parking_lot_with_enough_capacity() throws NotEnoughPositionException {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -52,7 +52,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_the_car_when_fetch_given_a_valid_ticket_and_parking_lot_that_parked_the_car() {
+    public void should_return_the_car_when_fetch_given_a_valid_ticket_and_parking_lot_that_parked_the_car() throws NotEnoughPositionException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
@@ -66,7 +66,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_given_a_used_ticket_and_parking_lot_that_the_car_is_fetched() {
+    public void should_return_null_when_fetch_given_a_used_ticket_and_parking_lot_that_the_car_is_fetched() throws NotEnoughPositionException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
@@ -81,7 +81,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_given_a_fake_ticket_and_parking_lot_with_car_parked() {
+    public void should_return_null_when_fetch_given_a_fake_ticket_and_parking_lot_with_car_parked() throws NotEnoughPositionException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
@@ -96,7 +96,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_throw_not_enough_position_exception_when_park_given_a_car_and_not_enough_capacity() {
+    public void should_throw_not_enough_position_exception_when_park_given_a_car_and_not_enough_capacity() throws NotEnoughPositionException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         parkingLot.park(new Car());

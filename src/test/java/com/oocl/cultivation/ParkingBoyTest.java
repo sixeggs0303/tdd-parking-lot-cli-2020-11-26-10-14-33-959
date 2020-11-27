@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.exception.NotEnoughPositionException;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -8,7 +9,7 @@ import static org.mockito.Mockito.verify;
 
 class ParkingBoyTest {
     @Test
-    void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() {
+    void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() throws NotEnoughPositionException {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
