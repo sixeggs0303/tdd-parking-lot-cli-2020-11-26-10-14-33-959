@@ -8,7 +8,7 @@ public class Car {
     }
 
     public String getLicense() {
-        return null;
+        return this.license;
     }
 
 }

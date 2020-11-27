@@ -8,7 +8,7 @@ public class Ticket {
     }
 
     public String getLicense() {
-        return null;
+        return this.license;
     }
 
 
