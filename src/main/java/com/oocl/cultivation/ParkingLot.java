@@ -38,6 +38,7 @@ public class ParkingLot {
     }
 
     public Double getAvailablePositionRate() {
+        if (this.capacity == 0) return 0.0;
         return (this.getEmptyPosition().doubleValue() / this.capacity);
     }
 }

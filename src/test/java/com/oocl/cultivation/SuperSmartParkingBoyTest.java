@@ -57,7 +57,7 @@ public class SuperSmartParkingBoyTest {
     public void should_throw_unrecognized_parking_ticket_exception_when_fetch_given_a_used_ticket_and_multiple_parking_lots_that_the_car_is_fetched() throws Exception {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(new ParkingLot(1));
+        parkingLots.add(new ParkingLot(0));
         parkingLots.add(new ParkingLot(5));
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
         Ticket ticket = superSmartParkingBoy.park(new Car());
