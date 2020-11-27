@@ -59,7 +59,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    public void should_throw_parking_boy_not_in_management_list_exception_when_assign_parking_boy_to_park_given_a_service_manager_with_management_list_without_parking_boy_and_a_car() throws NotEnoughPositionException, ParkingBoyNotInManagementListException {
+    public void should_throw_parking_boy_not_in_management_list_exception_when_assign_parking_boy_to_park_given_a_service_manager_with_management_list_without_parking_boy_and_a_car() {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         ParkingLot parkingLot1 = new ParkingLot(1);

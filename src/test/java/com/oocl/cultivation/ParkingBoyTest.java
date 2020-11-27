@@ -90,7 +90,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_throw_not_enough_position_exception_when_park_multiple_cars_given_1_car_and_two_parking_lot_with_0_capacity() throws NotEnoughPositionException {
+    public void should_throw_not_enough_position_exception_when_park_multiple_cars_given_1_car_and_two_parking_lot_with_0_capacity() {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(0));
