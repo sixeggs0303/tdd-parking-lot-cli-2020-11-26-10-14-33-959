@@ -3,12 +3,11 @@ package com.oocl.cultivation;
 import com.oocl.cultivation.exception.NotEnoughPositionException;
 import com.oocl.cultivation.exception.ParkingBoyNotInManagementListException;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class ParkingLotServiceManager extends ParkingBoy {
-    private HashSet<ParkingBoy> managementList;
+    private final HashSet<ParkingBoy> managementList;
 
     public ParkingLotServiceManager(List<ParkingLot> parkingLotList, HashSet<ParkingBoy> managementList) {
         super(parkingLotList);
