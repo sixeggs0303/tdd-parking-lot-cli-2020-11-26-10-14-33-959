@@ -12,7 +12,7 @@ class ParkingBoyTest {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        Car car = new Car();
+        Car car = new Car("A");
 
         //when
         parkingBoy.park(car);
@@ -26,7 +26,8 @@ class ParkingBoyTest {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        Ticket ticket = new Ticket();
+        Car car = new Car("A");
+        Ticket ticket = new Ticket(car);
 
         //when
         parkingBoy.fetch(ticket);
