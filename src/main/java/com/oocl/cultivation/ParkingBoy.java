@@ -8,6 +8,10 @@ import java.util.List;
 public class ParkingBoy {
     private final List<ParkingLot> parkingLots;
 
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
     public ParkingBoy(List<ParkingLot> parkingLotList) {
         this.parkingLots = parkingLotList;
     }

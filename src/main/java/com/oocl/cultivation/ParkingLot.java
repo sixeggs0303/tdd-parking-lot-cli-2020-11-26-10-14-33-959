@@ -32,4 +32,8 @@ public class ParkingLot {
         this.ticketCarHashMap.remove(ticket);
         return car;
     }
+
+    public Integer getEmptyPosition() {
+        return this.capacity - this.ticketCarHashMap.size();
+    }
 }
