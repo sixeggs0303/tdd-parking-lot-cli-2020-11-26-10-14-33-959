@@ -31,6 +31,9 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public Car assignParkingBoyToFetch(ParkingBoy parkingBoy, Ticket ticket) throws ParkingBoyNotInManagementListException, UnrecognizedParkingTicketException {
-        return parkingBoy.fetch(ticket);
+        if (this.managementList.contains(parkingBoy)) {
+            return parkingBoy.fetch(ticket);
+        }
+        throw new ParkingBoyNotInManagementListException();
     }
 }
