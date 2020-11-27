@@ -194,4 +194,22 @@ public class ParkingLotServiceManagerTest {
         //then
         assertEquals("Unrecognized Parking Ticket", unrecognizedParkingTicketException.getMessage());
     }
+
+    @Test
+    public void should_return_a_parking_ticket_when_park_given_a_car_and_manager() throws NotEnoughPositionException {
+        //given
+        Car car = new Car();
+
+        ParkingLot parkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingLots, new HashSet<>());
+
+        //when
+        final Ticket ticket = parkingLotServiceManager.park(car);
+
+        //then
+        assertNotNull(ticket);
+    }
 }
