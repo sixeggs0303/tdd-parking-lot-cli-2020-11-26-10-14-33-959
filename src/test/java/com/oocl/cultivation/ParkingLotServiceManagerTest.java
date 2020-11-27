@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParkingLotServiceManagerTest {
@@ -32,4 +33,26 @@ public class ParkingLotServiceManagerTest {
         assertTrue(parkingLotServiceManager.getManagementList().contains(smartParkingBoy));
         assertTrue(parkingLotServiceManager.getManagementList().contains(superSmartParkingBoy));
     }
+
+    @Test
+    public void should_return_a_ticket_when_assign_parking_boy_to_park_given_a_service_manager_with_management_list_and_a_car() {
+        //given
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        parkingLots.add(parkingLot1);
+
+        ParkingBoy parkingBoy1 = new ParkingBoy(parkingLots);
+        HashSet<ParkingBoy> parkingBoys = new HashSet<>();
+        parkingBoys.add(parkingBoy1);
+
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<>(), parkingBoys);
+
+        //when
+
+        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(parkingBoy1, new Car());
+
+        //then
+        assertNotNull(ticket);
+    }
+
 }
