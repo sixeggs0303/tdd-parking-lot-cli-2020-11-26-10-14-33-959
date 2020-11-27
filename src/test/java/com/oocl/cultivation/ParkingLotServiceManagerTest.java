@@ -212,4 +212,23 @@ public class ParkingLotServiceManagerTest {
         //then
         assertNotNull(ticket);
     }
+
+    @Test
+    public void should_return_the_car_when_fetch_given_a_manager_a_valid_ticket_and_parking_lot_that_parked_the_car() throws Exception {
+        //given
+        Car car = new Car();
+
+        ParkingLot parkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingLots, new HashSet<>());
+        Ticket ticket = parkingLotServiceManager.park(car);
+
+        //when
+        Car actual = parkingLot.fetch(ticket);
+
+        //then
+        assertEquals(car, actual);
+    }
 }
