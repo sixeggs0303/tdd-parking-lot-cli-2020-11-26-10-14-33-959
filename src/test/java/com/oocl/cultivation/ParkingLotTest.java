@@ -51,7 +51,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_the_car_when_fetch_given_a_valid_ticket_and_parking_lot_that_parked_the_car() throws NotEnoughPositionException {
+    public void should_return_the_car_when_fetch_given_a_valid_ticket_and_parking_lot_that_parked_the_car() throws Exception {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
