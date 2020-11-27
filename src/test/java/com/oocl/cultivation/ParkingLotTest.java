@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.exception.NotEnoughPositionException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -93,4 +94,19 @@ public class ParkingLotTest {
         //then
         assertNull(actual);
     }
+
+    @Test
+    public void should_throw_not_enough_position_exception_when_park_given_a_car_and_not_enough_capacity() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
+
+        //when
+        final NotEnoughPositionException notEnoughPositionException =
+                assertThrows(NotEnoughPositionException.class, () -> parkingLot.park(new Car()));
+
+        //then
+        assertEquals("Not Enough Position", notEnoughPositionException.getMessage());
+    }
+
 }
