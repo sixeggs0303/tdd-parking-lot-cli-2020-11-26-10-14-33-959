@@ -32,7 +32,7 @@ public class SmartParkingBoyTest {
 
 
     @Test
-    public void should_throw_not_enough_position_exception_when_park_multiple_cars_given_two_parking_lots_are_full() throws NotEnoughPositionException {
+    public void should_throw_not_enough_position_exception_when_park_multiple_cars_given_two_parking_lots_are_full() {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(0));
