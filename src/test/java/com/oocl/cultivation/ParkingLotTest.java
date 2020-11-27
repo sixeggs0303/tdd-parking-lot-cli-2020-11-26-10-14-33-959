@@ -81,7 +81,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_given_a_fake_ticket_and_parking_lot_with_car_parked() throws NotEnoughPositionException {
+    public void should_throw_unrecognized_parking_ticket_exception_when_fetch_given_a_fake_ticket_and_parking_lot_with_car_parked() throws NotEnoughPositionException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
