@@ -99,4 +99,29 @@ public class ParkingLotServiceManagerTest {
         //then
         assertEquals(car, actual);
     }
+
+    @Test
+    public void should_throw_parking_boy_not_in_management_list_exception_when_assign_parking_boy_to_fetch_given_a_service_manager_with_management_list_without_parking_boy_and_a_ticket() throws NotEnoughPositionException, ParkingBoyNotInManagementListException {
+        //given
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        parkingLots.add(parkingLot1);
+
+        ParkingBoy parkingBoy1 = new ParkingBoy(parkingLots);
+        HashSet<ParkingBoy> parkingBoys = new HashSet<>();
+        parkingBoys.add(parkingBoy1);
+
+        ParkingBoy parkingBoy2 = new ParkingBoy(new ArrayList<>());
+
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<>(), parkingBoys);
+        Car car = new Car();
+        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(parkingBoy1, car);
+
+        //when
+        final ParkingBoyNotInManagementListException parkingBoyNotInManagementListException =
+                assertThrows(ParkingBoyNotInManagementListException.class, () -> parkingLotServiceManager.assignParkingBoyToFetch(parkingBoy2, ticket));
+
+        //then
+        assertEquals("Parking Boy Not In Management List", parkingBoyNotInManagementListException.getMessage());
+    }
 }
