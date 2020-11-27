@@ -10,8 +10,8 @@ public class ParkingLot {
     private final Integer capacity;
     private final Map<Ticket, Car> ticketCarHashMap;
 
-    public ParkingLot(Integer available) {
-        this.capacity = available;
+    public ParkingLot(Integer capacity) {
+        this.capacity = capacity;
         this.ticketCarHashMap = new HashMap<>();
     }
 
