@@ -24,7 +24,7 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public Ticket assignParkingBoyToPark(ParkingBoy parkingBoy, Car car) throws NotEnoughPositionException, ParkingBoyNotInManagementListException {
-        if (managementList.contains(parkingBoy)) {
+        if (this.managementList.contains(parkingBoy)) {
             return parkingBoy.park(car);
         }
         throw new ParkingBoyNotInManagementListException();
