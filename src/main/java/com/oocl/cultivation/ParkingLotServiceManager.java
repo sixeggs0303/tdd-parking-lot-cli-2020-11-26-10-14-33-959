@@ -28,4 +28,8 @@ public class ParkingLotServiceManager extends ParkingBoy {
         }
         throw new ParkingBoyNotInManagementListException();
     }
+
+    public Car assignParkingBoyToFetch(ParkingBoy parkingBoy, Ticket ticket) {
+        return null;
+    }
 }
