@@ -19,19 +19,17 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_only_return_one_ticket_when_park_multiple_cars_given_multiple_car_and_parking_lot_with_1_capacity() throws NotEnoughPositionException {
+    public void should_throw_not_enough_position_exception_when_park_multiple_cars_given_multiple_car_and_parking_lot_with_1_capacity() throws NotEnoughPositionException {
         //given
-        Car car1 = new Car();
-        Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
 
         //when
-        Ticket ticket1 = parkingLot.park(car1);
-        Ticket ticket2 = parkingLot.park(car2);
+        final NotEnoughPositionException notEnoughPositionException =
+                assertThrows(NotEnoughPositionException.class, () -> parkingLot.park(new Car()));
 
         //then
-        assertNotNull(ticket1);
-        assertNull(ticket2);
+        assertEquals("Not Enough Position", notEnoughPositionException.getMessage());
     }
 
     @Test
@@ -94,19 +92,4 @@ public class ParkingLotTest {
         //then
         assertNull(actual);
     }
-
-    @Test
-    public void should_throw_not_enough_position_exception_when_park_given_a_car_and_not_enough_capacity() throws NotEnoughPositionException {
-        //given
-        ParkingLot parkingLot = new ParkingLot(1);
-        parkingLot.park(new Car());
-
-        //when
-        final NotEnoughPositionException notEnoughPositionException =
-                assertThrows(NotEnoughPositionException.class, () -> parkingLot.park(new Car()));
-
-        //then
-        assertEquals("Not Enough Position", notEnoughPositionException.getMessage());
-    }
-
 }
