@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.NotEnoughPositionException;
+import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,7 +65,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_given_a_used_ticket_and_parking_lot_that_the_car_is_fetched() throws NotEnoughPositionException {
+    public void should_throw_unrecognized_parking_ticket_exception_when_fetch_given_a_used_ticket_and_parking_lot_that_the_car_is_fetched() throws Exception {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
@@ -72,10 +73,11 @@ public class ParkingLotTest {
         parkingLot.fetch(ticket);
 
         //when
-        Car actual = parkingLot.fetch(ticket);
+        final UnrecognizedParkingTicketException unrecognizedParkingTicketException =
+                assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLot.fetch(ticket));
 
         //then
-        assertNull(actual);
+        assertEquals("Unrecognized Parking Ticket", unrecognizedParkingTicketException.getMessage());
     }
 
     @Test
@@ -87,9 +89,10 @@ public class ParkingLotTest {
         Ticket fakeTicket = new Ticket();
 
         //when
-        Car actual = parkingLot.fetch(fakeTicket);
+        final UnrecognizedParkingTicketException unrecognizedParkingTicketException =
+                assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLot.fetch(fakeTicket));
 
         //then
-        assertNull(actual);
+        assertEquals("Unrecognized Parking Ticket", unrecognizedParkingTicketException.getMessage());
     }
 }
