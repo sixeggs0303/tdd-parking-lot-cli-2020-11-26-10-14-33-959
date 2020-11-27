@@ -62,4 +62,19 @@ public class ParkingLotTest {
         //then
         assertEquals(car, actual);
     }
+
+    @Test
+    public void should_return_null_when_fetch_given_a_used_ticket_and_parking_lot_that_the_car_is_fetched() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car("A");
+        Ticket ticket = parkingLot.park(car);
+        parkingLot.fetch(ticket);
+
+        //when
+        Car actual = parkingLot.fetch(ticket);
+
+        //then
+        assertNull(actual);
+    }
 }
