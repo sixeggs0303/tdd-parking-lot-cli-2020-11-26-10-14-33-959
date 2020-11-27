@@ -21,7 +21,7 @@ public class SmartParkingBoyTest {
         Car car = new Car();
 
         //when
-        Ticket ticket = smartParkingBoy.park(new Car());
+        Ticket ticket = smartParkingBoy.park(car);
 
         //then
         assertEquals(car, parkingLot2.fetch(ticket));
