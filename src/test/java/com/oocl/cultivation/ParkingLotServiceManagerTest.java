@@ -1,7 +1,6 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.NotEnoughPositionException;
-import com.oocl.cultivation.exception.ParkingBoyNotInManagementListException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +37,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    public void should_return_a_ticket_when_assign_parking_boy_to_park_given_a_service_manager_with_management_list_and_a_car() throws NotEnoughPositionException, ParkingBoyNotInManagementListException {
+    public void should_return_a_ticket_when_assign_parking_boy_to_park_given_a_service_manager_with_management_list_and_a_car() throws NotEnoughPositionException {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         ParkingLot parkingLot1 = new ParkingLot(1);
@@ -52,34 +51,14 @@ public class ParkingLotServiceManagerTest {
 
         //when
 
-        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(parkingBoy1, new Car());
+        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(new Car());
 
         //then
         assertNotNull(ticket);
     }
 
     @Test
-    public void should_throw_parking_boy_not_in_management_list_exception_when_assign_parking_boy_to_park_given_a_service_manager_with_management_list_without_parking_boy_and_a_car() {
-        //given
-        List<ParkingLot> parkingLots = new ArrayList<>();
-        ParkingLot parkingLot1 = new ParkingLot(1);
-        parkingLots.add(parkingLot1);
-
-        ParkingBoy parkingBoy1 = new ParkingBoy(parkingLots);
-        HashSet<ParkingBoy> parkingBoys = new HashSet<>();
-
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<>(), parkingBoys);
-
-        //when
-        final ParkingBoyNotInManagementListException parkingBoyNotInManagementListException =
-                assertThrows(ParkingBoyNotInManagementListException.class, () -> parkingLotServiceManager.assignParkingBoyToPark(parkingBoy1, new Car()));
-
-        //then
-        assertEquals("Parking Boy Not In Management List", parkingBoyNotInManagementListException.getMessage());
-    }
-
-    @Test
-    public void should_return_the_car_when_assign_parking_boy_to_fetch_given_a_service_manager_with_management_list_and_a_ticket() throws NotEnoughPositionException, UnrecognizedParkingTicketException, ParkingBoyNotInManagementListException {
+    public void should_return_the_car_when_assign_parking_boy_to_fetch_given_a_service_manager_with_management_list_and_a_ticket() throws NotEnoughPositionException, UnrecognizedParkingTicketException {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         ParkingLot parkingLot1 = new ParkingLot(1);
@@ -91,38 +70,13 @@ public class ParkingLotServiceManagerTest {
 
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<>(), parkingBoys);
         Car car = new Car();
-        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(parkingBoy1, car);
+        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(car);
 
         //when
-        Car actual = parkingLotServiceManager.assignParkingBoyToFetch(parkingBoy1, ticket);
+        Car actual = parkingLotServiceManager.assignParkingBoyToFetch(ticket);
 
         //then
         assertEquals(car, actual);
-    }
-
-    @Test
-    public void should_throw_parking_boy_not_in_management_list_exception_when_assign_parking_boy_to_fetch_given_a_service_manager_with_management_list_without_parking_boy_and_a_ticket() throws NotEnoughPositionException, ParkingBoyNotInManagementListException {
-        //given
-        List<ParkingLot> parkingLots = new ArrayList<>();
-        ParkingLot parkingLot1 = new ParkingLot(1);
-        parkingLots.add(parkingLot1);
-
-        ParkingBoy parkingBoy1 = new ParkingBoy(parkingLots);
-        HashSet<ParkingBoy> parkingBoys = new HashSet<>();
-        parkingBoys.add(parkingBoy1);
-
-        ParkingBoy parkingBoy2 = new ParkingBoy(new ArrayList<>());
-
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<>(), parkingBoys);
-        Car car = new Car();
-        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(parkingBoy1, car);
-
-        //when
-        final ParkingBoyNotInManagementListException parkingBoyNotInManagementListException =
-                assertThrows(ParkingBoyNotInManagementListException.class, () -> parkingLotServiceManager.assignParkingBoyToFetch(parkingBoy2, ticket));
-
-        //then
-        assertEquals("Parking Boy Not In Management List", parkingBoyNotInManagementListException.getMessage());
     }
 
     @Test
@@ -140,7 +94,7 @@ public class ParkingLotServiceManagerTest {
 
         //when
         final NotEnoughPositionException notEnoughPositionException =
-                assertThrows(NotEnoughPositionException.class, () -> parkingLotServiceManager.assignParkingBoyToPark(parkingBoy, new Car()));
+                assertThrows(NotEnoughPositionException.class, () -> parkingLotServiceManager.assignParkingBoyToPark(new Car()));
 
         //then
         assertEquals("Not Enough Position", notEnoughPositionException.getMessage());
@@ -159,19 +113,19 @@ public class ParkingLotServiceManagerTest {
 
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<>(), parkingBoys);
 
-        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(parkingBoy, new Car());
+        Ticket ticket = parkingLotServiceManager.assignParkingBoyToPark(new Car());
         parkingBoy.fetch(ticket);
 
         //when
         final UnrecognizedParkingTicketException unrecognizedParkingTicketException =
-                assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLotServiceManager.assignParkingBoyToFetch(parkingBoy, ticket));
+                assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLotServiceManager.assignParkingBoyToFetch(ticket));
 
         //then
         assertEquals("Unrecognized Parking Ticket", unrecognizedParkingTicketException.getMessage());
     }
 
     @Test
-    public void should_throw_unrecognized_parking_ticket_exception_when_assign_parking_boy_to_fetch_given_a_service_manager_and_a_fake_ticket_and_multiple_parking_lots_with_car_parked() throws NotEnoughPositionException, ParkingBoyNotInManagementListException {
+    public void should_throw_unrecognized_parking_ticket_exception_when_assign_parking_boy_to_fetch_given_a_service_manager_and_a_fake_ticket_and_multiple_parking_lots_with_car_parked() throws NotEnoughPositionException {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(0));
@@ -183,13 +137,13 @@ public class ParkingLotServiceManagerTest {
 
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<>(), parkingBoys);
 
-        parkingLotServiceManager.assignParkingBoyToPark(parkingBoy, new Car());
+        parkingLotServiceManager.assignParkingBoyToPark(new Car());
 
         Ticket fakeTicket = new Ticket();
 
         //when
         final UnrecognizedParkingTicketException unrecognizedParkingTicketException =
-                assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLotServiceManager.assignParkingBoyToFetch(parkingBoy, fakeTicket));
+                assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLotServiceManager.assignParkingBoyToFetch(fakeTicket));
 
         //then
         assertEquals("Unrecognized Parking Ticket", unrecognizedParkingTicketException.getMessage());
